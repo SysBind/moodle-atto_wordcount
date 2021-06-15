@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * atto_wordcount English language file.
+ * atto_wordcount lib file.
  *
  * @package    atto_wordcount
  * @copyright  2021 HUJI
@@ -25,5 +25,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Atto Word Count';
-$string['words'] = 'Words';
+function atto_wordcount_strings_for_js() {
+    global $PAGE;
+
+    $PAGE->requires->strings_for_js(['words'], 'atto_wordcount');
+}
