@@ -26,6 +26,12 @@ namespace atto_wordcount\privacy;
 
 defined('MOODLE_INTERNAL') || die();
 
+/**
+ * Privacy Subsystem for atto_wordcount implementing null_provider.
+ *
+ * @copyright  2021 SysBind Ltd. <service@sysbind.co.il>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class provider implements \core_privacy\local\metadata\null_provider {
 
     /**
