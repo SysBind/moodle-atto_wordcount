@@ -18,8 +18,7 @@
  * atto_wordcount English language file.
  *
  * @package    atto_wordcount
- * @copyright  2021 HUJI
- * @auther     SysBind Ltd. <service@sysbind.co.il>
+ * @copyright  2021 SysBind Ltd. <service@sysbind.co.il>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

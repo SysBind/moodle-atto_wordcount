@@ -18,13 +18,15 @@
  * atto_wordcount lib file.
  *
  * @package    atto_wordcount
- * @copyright  2021 HUJI
- * @auther     SysBind Ltd. <service@sysbind.co.il>
+ * @copyright  SysBind Ltd. <service@sysbind.co.il>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
+/**
+ * Initialise the js strings required for this module.
+ */
 function atto_wordcount_strings_for_js() {
     global $PAGE;
 
