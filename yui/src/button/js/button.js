@@ -15,7 +15,7 @@
 
 /*
  * @package    atto_wordcount
- * @copyright  2021 SysBind Ltd. <service@sysbind.co.il>
+ * @copyright  2021 SysBind Ltd. <service@sysbind.co.il>0
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
