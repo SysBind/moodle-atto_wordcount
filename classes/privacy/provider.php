@@ -18,7 +18,7 @@
  * atto_wordcount privacy provider.
  *
  * @package    atto_wordcount
- * @copyright  2021 SysBind Ltd. <service@sysbind.co.il>
+ * @copyright  2021 Avi Levy <avi@sysbind.co.il>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -29,7 +29,7 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * Privacy Subsystem for atto_wordcount implementing null_provider.
  *
- * @copyright  2021 SysBind Ltd. <service@sysbind.co.il>
+ * @copyright  2021 Avi Levy <avi@sysbind.co.il>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class provider implements \core_privacy\local\metadata\null_provider {

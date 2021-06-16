@@ -17,7 +17,7 @@ YUI.add('moodle-atto_wordcount-button', function (Y, NAME) {
 
 /*
  * @package    atto_wordcount
- * @copyright  2021 SysBind Ltd. <service@sysbind.co.il>0
+ * @copyright  2021 Avi Levy <avi@sysbind.co.il>0
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

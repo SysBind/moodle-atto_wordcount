@@ -18,7 +18,7 @@
  * atto_wordcount lib file.
  *
  * @package    atto_wordcount
- * @copyright  SysBind Ltd. <service@sysbind.co.il>
+ * @copyright  Avi Levy <avi@sysbind.co.il>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
