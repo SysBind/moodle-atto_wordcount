@@ -25,9 +25,9 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->version = 2021061500;
-$plugin->requires = 2020060900;
+$plugin->requires = 2020061507.02;
 $plugin->component = 'atto_wordcount';
-$plugin->release = 'v1.0.1';
+$plugin->release = 'v1.0.2';
 $plugin->maturity = MATURITY_STABLE;
 $plugin->supported = [39, 310, 311];
 $plugin->incompatible = 38;
