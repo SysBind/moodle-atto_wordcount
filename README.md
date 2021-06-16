@@ -1,4 +1,4 @@
-![Build Status](https://github.com/SysBind/moodle-atto_wordcount/actions/workflows/ci.yml/badge.svg?branch=main)
+[![Build Status](https://github.com/SysBind/moodle-atto_wordcount/actions/workflows/ci.yml/badge.svg?branch=main)]((https://github.com/SysBind/moodle-atto_wordcount/actions))
 
 # moodle-atto_wordcount
 
