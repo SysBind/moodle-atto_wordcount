@@ -7,7 +7,7 @@ name: Releasing in the Plugins directory
 on:
   push:
     tags:
-      - *
+      - '*'
 
   workflow_dispatch:
     inputs:
