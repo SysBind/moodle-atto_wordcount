@@ -1,3 +1,7 @@
+## [1.0.12] - 2021-06-06
+### Changed
+- fix toolbar style
+
 ## [1.0.6] - 2021-06-16
 ### Changed
 - remove "v" from version name
