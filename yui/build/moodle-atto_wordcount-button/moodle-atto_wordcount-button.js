@@ -101,4 +101,4 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
 });
 
 
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["moodle-editor_atto-plugin"]});
