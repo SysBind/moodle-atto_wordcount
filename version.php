@@ -24,10 +24,10 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2021061500;
-$plugin->requires = 2020061507.02;
+$plugin->version = 2021061600;
+$plugin->requires = 2020110904.08;
 $plugin->component = 'atto_wordcount';
-$plugin->release = 'v1.0.2';
+$plugin->release = 'v1.0.3';
 $plugin->maturity = MATURITY_STABLE;
-$plugin->supported = [39, 310, 311];
-$plugin->incompatible = 38;
+$plugin->supported = [310, 311];
+$plugin->incompatible = 39;
