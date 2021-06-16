@@ -1,4 +1,4 @@
-## [1.0.4] - 2021-06-16
+## [1.0.6] - 2021-06-16
 ### Changed
 - remove "v" from version name
 
