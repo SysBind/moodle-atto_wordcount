@@ -3,12 +3,18 @@
 # moodle-atto_wordcount
 
 Add "real time" words count to Moodle Atto editor
+## Requirements
 
-## Installation ##
+- Moodle 3.9 or later.
+
+## Installation
 
 Add the plugin to /lib/editor/atto/plugins
 
 Run the Moodle upgrade.
+## Author
+
+Avi Levy (avi@sysbind.co.il)
 
 ## License ##
 
