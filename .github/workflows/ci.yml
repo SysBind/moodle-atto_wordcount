@@ -1,4 +1,4 @@
-name: Moodle plugin CI for master
+name: Moodle plugin CI for main
 
 # Controls when the action will run.
 on: [push, pull_request]
