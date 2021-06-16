@@ -29,4 +29,3 @@ $plugin->requires = 2020061500;
 $plugin->component = 'atto_wordcount';
 $plugin->release = '1.0.9';
 $plugin->maturity = MATURITY_STABLE;
-$plugin->incompatible = 38;
