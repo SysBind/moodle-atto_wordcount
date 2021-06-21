@@ -37,30 +37,30 @@ YUI.add('moodle-atto_wordcount-button', function (Y, NAME) {
 Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto.EditorPlugin, [], {
 
     block: 0,
-    update_rate: 200,
+    updateRate: 200,
     counterid: null,
+    spacer: /(<\/(?! a>|b>|del>|em>|i>|ins>|s>|small>|strong>|sub>|sup>|u>)\w+>|<br>|<br\s*\/>)/g,
     countre: /[\w\u00C0-\u2013\u2015-\uFFDC]+/g,
-    cleanre: /[\u2019\'-]*/g,
-    update_on_delete: true,
+    cleanre: /[\u2019'-]*/g,
 
-    initializer: function () {
+    initializer: function() {
         var host = this.get('host');
         var wrapper = host._wrapper;
         this.counterid = host.get('elementId') + '-word-count';
         this.counterElement = Y.Node.create('<span class="badge badge-light" id="' + this.counterid + '">0</span>');
         wrapper.appendChild(
             Y.Node.create('<div class="' + this.toolbar.getAttribute('class') + ' p-0 d-flex">' +
-                '<div class="bg-info d-inline-flex p-1"><strong>'
-                + M.util.get_string('words', 'atto_wordcount') + ':' +
+                '<div class="d-inline-flex p-1"><strong>'
+                + M.util.get_string('words', 'atto_wordcount') + ': ' +
                 '</strong><span id="' + this.counterid + '">0</span>' +
                 '<span class="sr-only">words count</span></div>' +
                 '</div></div>'));
-        this.get('host').on('pluginsloaded', function() {
+        this.get('host').on('pluginsloaded', function () {
             // Adds the current value to the stack.
             this.get('host').on('atto:selectionchanged', this._count, this);
         }, this);
     },
-    _count: function (editor) {
+    _count: function(editor) {
         var wordcount = this;
         if (wordcount.block) {
             return;
@@ -71,16 +71,19 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
             Y.one('#' + wordcount.counterid).set('text', wordcount._getCount(editor));
             setTimeout(function () {
                 wordcount.block = 0;
-            }, wordcount.update_rate);
+            }, wordcount.updateRate);
         });
     },
-    _getCount: function () {
+    _getCount: function() {
         var wordCounts = 0;
         var editorText = this.get('host').getCleanHTML();
         if (editorText) {
             editorText = editorText.replace(/\.\.\./g, ' ');
-            editorText = editorText.replace(/<.[^<>]*?>/g, ' ').replace(/&nbsp;|&#160;/gi, ' '); // remove html tags and space chars
-
+            // Before stripping tags, add a space after the close tag of anything that is not obviously inline.
+            // Also, br is a special case because it definitely delimits a word, but has no close tag.
+            editorText = editorText.replace(this.spacer, '$1 ');
+            // Now remove HTML tags.
+            editorText = editorText.replace(/<.[^<>]*?>/g, ' ').replace(/&nbsp;|&#160;/gi, ' ');
             // deal with html entities
             editorText = editorText.replace(/(\w+)(&.+?;)+(\w+)/, "$1$3").replace(/&.+?;/g, ' ');
             // Replace underscores (which are classed as word characters) with spaces.
