@@ -55,7 +55,7 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
                 '</strong><span id="' + this.counterid + '">0</span>' +
                 '<span class="sr-only">words count</span></div>' +
                 '</div></div>'));
-        this.get('host').on('pluginsloaded', function () {
+        this.get('host').on('pluginsloaded', function() {
             // Adds the current value to the stack.
             this.get('host').on('atto:selectionchanged', this._count, this);
         }, this);
@@ -67,9 +67,9 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
         }
 
         wordcount.block = 1;
-        setTimeout(function () {
+        setTimeout(function() {
             Y.one('#' + wordcount.counterid).set('text', wordcount._getCount(editor));
-            setTimeout(function () {
+            setTimeout(function() {
                 wordcount.block = 0;
             }, wordcount.updateRate);
         });
@@ -84,7 +84,7 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
             editorText = editorText.replace(this.spacer, '$1 ');
             // Now remove HTML tags.
             editorText = editorText.replace(/<.[^<>]*?>/g, ' ').replace(/&nbsp;|&#160;/gi, ' ');
-            // deal with html entities
+            // Deal with html entities.
             editorText = editorText.replace(/(\w+)(&.+?;)+(\w+)/, "$1$3").replace(/&.+?;/g, ' ');
             // Replace underscores (which are classed as word characters) with spaces.
             editorText = editorText.replace(/_/g, ' ');

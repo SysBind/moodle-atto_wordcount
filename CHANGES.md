@@ -1,4 +1,4 @@
-## [1.0.16] - 2021-06-21
+## [1.0.17] - 2021-06-21
 ### Changed
 - Style of the word count toolbar
 - Add spaces to html end tags for more make tags separate and easy to find and replace.
