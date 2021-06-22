@@ -1,3 +1,7 @@
+## [1.0.19] - 2021-06-22
+### Changed
+- Fix id used by javascript in quiz due to not valid character ":"
+
 ## [1.0.18] - 2021-06-22
 ### Added
 - Behat tests

@@ -46,6 +46,7 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
         var host = this.get('host');
         var wrapper = host._wrapper;
         this.counterid = host.get('elementid') + '-word-count';
+        this.counterid = this.counterid.replace(':', '-');
         this.counterElement = Y.Node.create('<span class="badge badge-light" id="' + this.counterid + '">0</span>');
         wrapper.appendChild(
             Y.Node.create('<div class="' + this.toolbar.getAttribute('class') + ' p-0 d-flex">' +
@@ -54,6 +55,7 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
                 '</strong><span id="' + this.counterid + '">0</span>' +
                 '<span class="sr-only">words count</span></div>' +
                 '</div></div>'));
+        this._count(host.get('editor'));
         this.get('host').on('pluginsloaded', function() {
             // Adds the current value to the stack.
             this.get('host').on('atto:selectionchanged', this._count, this);
