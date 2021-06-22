@@ -1,3 +1,9 @@
+## [1.0.18] - 2021-06-22
+### Added
+- Behat tests
+### Changed
+- Update README for more details description and Installation instruction
+
 ## [1.0.17] - 2021-06-21
 ### Changed
 - Style of the word count toolbar

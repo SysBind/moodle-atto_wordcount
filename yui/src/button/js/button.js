@@ -38,13 +38,14 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
     updateRate: 200,
     counterid: null,
     spacer: /(<\/(?! a>|b>|del>|em>|i>|ins>|s>|small>|strong>|sub>|sup>|u>)\w+>|<br>|<br\s*\/>)/g,
+    mediaTags: /(<(audio|video)).*(<\/(audio|video)>)/gm,
     countre: /[\w\u00C0-\u2013\u2015-\uFFDC]+/g,
     cleanre: /[\u2019'-]*/g,
 
     initializer: function() {
         var host = this.get('host');
         var wrapper = host._wrapper;
-        this.counterid = host.get('elementId') + '-word-count';
+        this.counterid = host.get('elementid') + '-word-count';
         this.counterElement = Y.Node.create('<span class="badge badge-light" id="' + this.counterid + '">0</span>');
         wrapper.appendChild(
             Y.Node.create('<div class="' + this.toolbar.getAttribute('class') + ' p-0 d-flex">' +
@@ -80,6 +81,8 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
             // Before stripping tags, add a space after the close tag of anything that is not obviously inline.
             // Also, br is a special case because it definitely delimits a word, but has no close tag.
             editorText = editorText.replace(this.spacer, '$1 ');
+            // Remove Media Tags
+            editorText = editorText.replace(this.mediaTags, ' ');
             // Now remove HTML tags.
             editorText = editorText.replace(/<.[^<>]*?>/g, ' ').replace(/&nbsp;|&#160;/gi, ' ');
             // Deal with html entities.
