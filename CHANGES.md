@@ -1,3 +1,11 @@
+## [1.0.20] - 2021-07-05
+### Added
+- Add stylesheets for bottom toolbar
+
+### Changed 
+- Update the release workflow to new one with token
+- Fix screen reader only view on question editor
+
 ## [1.0.19] - 2021-06-22
 ### Changed
 - Fix id used by javascript in quiz due to not valid character ":"

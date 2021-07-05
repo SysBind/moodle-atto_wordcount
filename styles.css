@@ -1,0 +1,14 @@
+body.path-question-type .form-group .editor_atto_toolbar .sr-only:not(legend) {
+    height: 1px;
+    overflow: hidden;
+}
+
+body.path-question-type .form-group .sr-only:not(legend):not([for="id_category"]) {
+    height: 1px;
+    overflow: hidden;
+}
+
+.editor_atto_wrap .editor_atto_toolbar.editor_atto_toolbar_bottom {
+    font-size: 0.7rem;
+    min-height: unset;
+}
