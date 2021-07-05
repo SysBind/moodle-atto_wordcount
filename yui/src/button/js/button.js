@@ -49,11 +49,11 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
         this.counterid = this.counterid.replace(':', '-');
         this.counterElement = Y.Node.create('<span class="badge badge-light" id="' + this.counterid + '">0</span>');
         wrapper.appendChild(
-            Y.Node.create('<div class="' + this.toolbar.getAttribute('class') + ' p-0 d-flex">' +
-                '<div class="d-inline-flex p-1"><strong>'
+                Y.Node.create('<div class="' + this.toolbar.getAttribute('class') + ' editor_atto_toolbar_bottom p-0 d-flex">' +
+                    '<div class="d-inline-flex p-0"><strong>'
                 + M.util.get_string('words', 'atto_wordcount') + ': ' +
                 '</strong><span id="' + this.counterid + '">0</span>' +
-                '<span class="sr-only">words count</span></div>' +
+                '<span class="sr-only">' + M.util.get_string('wordscount', 'atto_wordcount') + '</span></div>' +
                 '</div></div>'));
         this._count(host.get('editor'));
         this.get('host').on('pluginsloaded', function() {

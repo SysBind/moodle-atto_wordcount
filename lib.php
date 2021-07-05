@@ -30,5 +30,5 @@ defined('MOODLE_INTERNAL') || die();
 function atto_wordcount_strings_for_js() {
     global $PAGE;
 
-    $PAGE->requires->strings_for_js(['words'], 'atto_wordcount');
+    $PAGE->requires->strings_for_js(['words', 'wordscount'], 'atto_wordcount');
 }
