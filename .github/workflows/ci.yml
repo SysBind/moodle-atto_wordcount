@@ -23,7 +23,7 @@ jobs:
           - 5432:5432
 
       mariadb:
-        image: mariadb
+        image: mariadb:10.5.13
         env:
           MYSQL_USER: 'root'
           MYSQL_ALLOW_EMPTY_PASSWORD: "true"
@@ -38,18 +38,18 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - {moodle-branch: 'MOODLE_39_STABLE', php: '7.2', node: '14.15.1', database: 'mariadb'}
-          - {moodle-branch: 'MOODLE_39_STABLE', php: '7.2', node: '14.15.1', database: 'pgsql'}
-          - {moodle-branch: 'MOODLE_39_STABLE', php: '7.3', node: '14.15.1', database: 'mariadb'}
-          - {moodle-branch: 'MOODLE_39_STABLE', php: '7.3', node: '14.15.1', database: 'pgsql'}
-          - {moodle-branch: 'MOODLE_39_STABLE', php: '7.4', node: '14.15.1', database: 'mariadb'}
-          - {moodle-branch: 'MOODLE_39_STABLE', php: '7.4', node: '14.15.1', database: 'pgsql'}
-          - {moodle-branch: 'MOODLE_310_STABLE', php: '7.4', node: '14.15.1', database: 'mariadb'}
-          - {moodle-branch: 'MOODLE_310_STABLE', php: '7.4', node: '14.15.1', database: 'pgsql'}
-          - {moodle-branch: 'MOODLE_311_STABLE', php: '7.4', node: '14.15.1', database: 'mariadb'}
-          - {moodle-branch: 'MOODLE_311_STABLE', php: '7.4', node: '14.15.1', database: 'pgsql'}
-          - {moodle-branch: 'MOODLE_311_STABLE', php: '8.0', node: '14.15.1', database: 'mariadb'}
-          - {moodle-branch: 'MOODLE_311_STABLE', php: '8.0', node: '14.15.1', database: 'pgsql'}
+          - {moodle-branch: 'MOODLE_39_STABLE', php: '7.2', node: '14.18.0', database: 'mariadb'}
+          - {moodle-branch: 'MOODLE_39_STABLE', php: '7.2', node: '14.18.0', database: 'pgsql'}
+          - {moodle-branch: 'MOODLE_39_STABLE', php: '7.3', node: '14.18.0', database: 'mariadb'}
+          - {moodle-branch: 'MOODLE_39_STABLE', php: '7.3', node: '14.18.0', database: 'pgsql'}
+          - {moodle-branch: 'MOODLE_39_STABLE', php: '7.4', node: '14.18.0', database: 'mariadb'}
+          - {moodle-branch: 'MOODLE_39_STABLE', php: '7.4', node: '14.18.0', database: 'pgsql'}
+          - {moodle-branch: 'MOODLE_310_STABLE', php: '7.4', node: '14.18.0', database: 'mariadb'}
+          - {moodle-branch: 'MOODLE_310_STABLE', php: '7.4', node: '14.18.0', database: 'pgsql'}
+          - {moodle-branch: 'MOODLE_311_STABLE', php: '7.4', node: '14.18.0', database: 'mariadb'}
+          - {moodle-branch: 'MOODLE_311_STABLE', php: '7.4', node: '14.18.0', database: 'pgsql'}
+          - {moodle-branch: 'MOODLE_311_STABLE', php: '8.0', node: '14.18.0', database: 'mariadb'}
+          - {moodle-branch: 'MOODLE_311_STABLE', php: '8.0', node: '14.18.0', database: 'pgsql'}
 
     steps:
       - name: Check out repository code

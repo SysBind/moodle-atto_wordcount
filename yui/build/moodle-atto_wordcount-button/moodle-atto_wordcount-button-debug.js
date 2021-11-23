@@ -41,8 +41,7 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
     counterid: null,
     spacer: /(<\/(?! a>|b>|del>|em>|i>|ins>|s>|small>|strong>|sub>|sup>|u>)\w+>|<br>|<br\s*\/>)/g,
     mediaTags: /(<(audio|video)).*(<\/(audio|video)>)/gm,
-    countre: /[\w\u00C0-\u2013\u2015-\uFFDC]+/g,
-    cleanre: /[\u2019'-]*/g,
+    countre: /[\w\u0023-\u2013\u2015-\uFFFF]+/g,
 
     initializer: function() {
         var host = this.get('host');
@@ -51,11 +50,10 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
         this.counterid = this.counterid.replace(':', '-');
         this.counterElement = Y.Node.create('<span class="badge badge-light" id="' + this.counterid + '">0</span>');
         wrapper.appendChild(
-                Y.Node.create('<div class="' + this.toolbar.getAttribute('class') + ' editor_atto_toolbar_bottom p-0 d-flex">' +
-                    '<div class="d-inline-flex p-0"><strong>'
+            Y.Node.create('<div class="' + this.toolbar.getAttribute('class') + ' p-0 d-flex">' +
+                '<div class="d-inline-flex p-1"><strong>'
                 + M.util.get_string('words', 'atto_wordcount') + ': ' +
                 '</strong><span id="' + this.counterid + '">0</span>' +
-                '<span class="sr-only">' + M.util.get_string('wordscount', 'atto_wordcount') + '</span></div>' +
                 '</div></div>'));
         this._count(host.get('editor'));
         this.get('host').on('pluginsloaded', function() {
@@ -91,12 +89,6 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
             editorText = editorText.replace(/<.[^<>]*?>/g, ' ').replace(/&nbsp;|&#160;/gi, ' ');
             // Deal with html entities.
             editorText = editorText.replace(/(\w+)(&.+?;)+(\w+)/, "$1$3").replace(/&.+?;/g, ' ');
-            // Replace underscores (which are classed as word characters) with spaces.
-            editorText = editorText.replace(/_/g, ' ');
-            // Remove any characters that shouldn't be treated as word boundaries.
-            editorText = editorText.replace(this.cleanre, '');
-            // Remove dots and commas from within numbers only.
-            editorText = editorText.replace(/([0-9])[.,]([0-9])/g, '$1$2');
 
             var wordArray = editorText.match(this.countre);
             if (wordArray) {
