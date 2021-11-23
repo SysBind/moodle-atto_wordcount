@@ -42,7 +42,7 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
     spacer: /(<\/(?! a>|b>|del>|em>|i>|ins>|s>|small>|strong>|sub>|sup>|u>)\w+>|<br>|<br\s*\/>)/g,
     mediaTags: /(<(audio|video)).*(<\/(audio|video)>)/gm,
     countre: /[\w\u00C0-\u2013\u2015-\uFFDC]+/g,
-    cleanre: /[\u2019'-]*/g,
+    cleanre: /[\u2019'-.,]*/g,
 
     initializer: function() {
         var host = this.get('host');
@@ -91,8 +91,6 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
             editorText = editorText.replace(/<.[^<>]*?>/g, ' ').replace(/&nbsp;|&#160;/gi, ' ');
             // Deal with html entities.
             editorText = editorText.replace(/(\w+)(&.+?;)+(\w+)/, "$1$3").replace(/&.+?;/g, ' ');
-            // Replace underscores (which are classed as word characters) with spaces.
-            editorText = editorText.replace(/_/g, ' ');
             // Remove any characters that shouldn't be treated as word boundaries.
             editorText = editorText.replace(this.cleanre, '');
             // Remove dots and commas from within numbers only.
