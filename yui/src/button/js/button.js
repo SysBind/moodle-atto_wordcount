@@ -37,9 +37,9 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
     block: 0,
     updateRate: 200,
     counterid: null,
-    spacer: /(<\/(?! a>|b>|del>|em>|i>|ins>|s>|small>|strong>|sub>|sup>|u>)\w+>|<br>|<br\s*\/>)/g,
+    spacer: /(<\/(?!a>|b>|del>|em>|i>|ins>|s>|small>|strong>|sub>|sup>|u>)\w+>|<br> | <br\s*\/>)/g,
     mediaTags: /(<(audio|video)).*(<\/(audio|video)>)/gm,
-    countre: /[\w\u0023-\u2013\u2015-\uFFFF]+/g,
+    counter: new RegExp('[\\p{Z}\\p{Cc}—–]+', 'gu'),
 
     initializer: function() {
         var host = this.get('host');
@@ -48,8 +48,8 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
         this.counterid = this.counterid.replace(':', '-');
         this.counterElement = Y.Node.create('<span class="badge badge-light" id="' + this.counterid + '">0</span>');
         wrapper.appendChild(
-                Y.Node.create('<div class="' + this.toolbar.getAttribute('class') + ' editor_atto_toolbar_bottom p-0 d-flex">' +
-                    '<div class="d-inline-flex p-0"><strong>'
+            Y.Node.create('<div class="' + this.toolbar.getAttribute('class') + ' editor_atto_toolbar_bottom p-0 d-flex">' +
+                '<div class="d-inline-flex p-0"><strong>'
                 + M.util.get_string('words', 'atto_wordcount') + ': ' +
                 '</strong><span id="' + this.counterid + '">0</span>' +
                 '</div></div>'));
@@ -77,18 +77,13 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
         var wordCounts = 0;
         var editorText = this.get('host').getCleanHTML();
         if (editorText) {
-            editorText = editorText.replace(/\.\.\./g, ' ');
-            // Before stripping tags, add a space after the close tag of anything that is not obviously inline.
-            // Also, br is a special case because it definitely delimits a word, but has no close tag.
             editorText = editorText.replace(this.spacer, '$1 ');
-            // Remove Media Tags
-            editorText = editorText.replace(this.mediaTags, ' ');
-            // Now remove HTML tags.
-            editorText = editorText.replace(/<.[^<>]*?>/g, ' ').replace(/&nbsp;|&#160;/gi, ' ');
-            // Deal with html entities.
-            editorText = editorText.replace(/(\w+)(&.+?;)+(\w+)/, "$1$3").replace(/&.+?;/g, ' ');
-
-            var wordArray = editorText.match(this.countre);
+            editorText = editorText.replace(/<.[^<>]*?>/g, '');
+            editorText = editorText.replace(/&nbsp;|&#160;/gi, ' ');
+            var wordArray = editorText.split(this.counter, -1);
+            wordArray = wordArray.filter(function(entry) {
+                return entry.trim() != '';
+            });
             if (wordArray) {
                 wordCounts = wordArray.length;
             }
