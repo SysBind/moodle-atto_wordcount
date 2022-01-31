@@ -99,4 +99,4 @@ Feature: Atto wordcount button
     And I set the field "Muted" to "1"
     And I set the field "Loop" to "1"
     When I click on "Insert media" "button"
-    Then I should see "Words: 428"
+    Then I should see "Words: 430"
