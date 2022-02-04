@@ -19,6 +19,7 @@
  *
  * @package    atto_wordcount
  * @copyright  Avi Levy <avi@sysbind.co.il>
+ *             2022 André Menrath <andre.menrath@uni-graz.at>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -31,4 +32,14 @@ function atto_wordcount_strings_for_js() {
     global $PAGE;
 
     $PAGE->requires->strings_for_js(['words', 'wordscount'], 'atto_wordcount');
+}
+
+/**
+ * Pass the wordlimits to the js part of the plugin.
+ */
+function atto_wordcount_params_for_js ($elementid, $options, $foptions) {
+    $wordlimits = atto_wordcount\wordlimit::get_wordlimits();
+    // Wrapp the wordlimits into an array whith wordlimits as the key.
+    $params = array ( 'wordlimits' => $wordlimits );
+    return $params;
 }
