@@ -64,16 +64,16 @@ class wordlimit {
             );
             return $wordlimit->value;
         }
-        return array( null );
+        return null;
     }
 
 
     /**
-     * Get the wordlimit for an essay inside a quiz.
+     * Get the wordlimits for an essay of a certain page inside a quiz.
      *
-     * @return  int
+     * @return  array
      */
-    protected static function get_wordlimit_for_essay_in_quiz($quizid, $page) {
+    protected static function get_wordlimits_for_essay_in_quiz($quizid, $page) {
         global $DB;
         // Make a database query to see if a maxwordlimit is set on this question. TODO: is this elegant enough?
         // We need to also select slot, because the slot is unique here: there might be multiple
@@ -82,7 +82,7 @@ class wordlimit {
                 FROM {qtype_essay_options}
                 INNER JOIN {quiz_slots}
                 ON {qtype_essay_options}.questionid = {quiz_slots}.questionid
-                where quizid = ? and page = ?
+                WHERE quizid = ? AND page = ?
                 ORDER BY slot";
         $wordlimits = $DB->get_records_sql( $sql, [$quizid, $page] );
         $wordlimits = array_column( $wordlimits, 'maxwordlimit' );
@@ -91,7 +91,7 @@ class wordlimit {
 
 
     /**
-     * Get the wordlimit depending on the block-type which is beein edited.
+     * Get the wordlimit depending on the type of page which is beein edited.
      *
      * @return  array
      */
@@ -117,7 +117,7 @@ class wordlimit {
             $page = $PAGE->url->get_param( 'page' );
             // The page in the URL Params is starting with zero, in the database they start with 1. So there is an offset.
             ( null === $page ) ? $page = "1" : $page = intval( $page ) + 1;
-            $wordlimits = self::get_wordlimit_for_essay_in_quiz( $quizid, $page );
+            $wordlimits = self::get_wordlimits_for_essay_in_quiz( $quizid, $page );
         }
 
         return $wordlimits;
