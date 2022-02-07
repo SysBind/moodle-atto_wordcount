@@ -18,7 +18,8 @@
  * atto_wordcount version file.
  *
  * @package    atto_wordcount
- * @copyright  2021 Avi Levy <avi@sysbind.co.il>
+ * @copyright  2011 Avi Levy <avi@sysbind.co.il>
+ *             2022 André Menrath <andre.menrath@uni-graz.at>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
