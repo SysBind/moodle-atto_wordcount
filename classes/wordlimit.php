@@ -98,6 +98,7 @@ class wordlimit {
     public static function get_wordlimits() {
 
         global $PAGE;
+
         // Define the parameter array which is served to the javascript of the plugin.
         $wordlimits = null;
 
@@ -107,6 +108,8 @@ class wordlimit {
             $wordlimit = self::get_wordlimit_for_onlinesubmission($id);
             // We have to pass wordlimits as an array.
             $wordlimits = array( 0 => $wordlimit);
+            // We can return now and don't need to check for a quiz page.
+            return $wordlimits;
         }
 
         if ( '/mod/quiz/attempt.php' === $PAGE->url->get_path() && "mod-quiz-attempt" === $PAGE->pagetype ) {
