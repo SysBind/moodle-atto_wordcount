@@ -100,7 +100,7 @@ class wordlimit {
         global $PAGE;
 
         // Define the parameter array which is served to the javascript of the plugin.
-        $wordlimits = null;
+        $wordlimits = array( null );
 
         // Check if we are on a page where the users submits/edits an onlinetext for an assignment.
         if ( '/mod/assign/view.php' === $PAGE->url->get_path() && 'editsubmission' === $PAGE->url->get_param('action') ) {
