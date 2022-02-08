@@ -58,7 +58,7 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
         wrapper.appendChild(
             Y.Node.create('<div class="' + this.toolbar.getAttribute('class') + ' editor_atto_toolbar_bottom p-0 d-flex">' +
                 '<div class="d-inline-flex p-1"><strong>'
-                + M.util.get_string('words', 'atto_wordcount') + ':&#160;' +
+                + M.util.get_string('words', 'atto_wordcount') + ': ' +
                 '</strong><span id="' + this.counterid + '">0</span>' +
                 '</div></div>'));
         this.wordlimit = this.get('wordlimits')[editorInstance];
