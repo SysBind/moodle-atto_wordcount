@@ -100,3 +100,107 @@ Feature: Atto wordcount button
     And I set the field "Loop" to "1"
     When I click on "Insert media" "button"
     Then I should see "Words: 430"
+
+  @javascript
+  Scenario: Display wordcount in onlinesubmissions if wordlimit is not set
+    Given the following "courses" exist:
+      | fullname | shortname | category | groupmode |
+      | Course 1 | C1 | 0 | 1 |
+    And the following "users" exist:
+      | username | firstname | lastname | email |
+      | teacher1 | Teacher | 1 | teacher1@example.com |
+      | student1 | Student | 1 | student1@example.com |
+    And the following "course enrolments" exist:
+      | user | course | role |
+      | teacher1 | C1 | editingteacher |
+      | student1 | C1 | student |
+    And the following "activity" exists:
+      | activity                                      | assign                  |
+      | course                                        | C1                      |
+      | name                                          | Test assignment name    |
+      | intro                                         | Submit your online text |
+      | submissiondrafts                              | 0                       |
+      | assignsubmission_onlinetext_enabled           | 1                       |
+      | assignsubmission_onlinetext_wordlimit_enabled | 0                       |
+      | assignsubmission_file_enabled                 | 0                       |
+    And I am on the "Test assignment name" Activity page logged in as student1
+    When I press "Add submission"
+    And I wait until the page is ready
+    And I set the following fields to these values:
+      | Online text | two words |
+    And I click on "Show more buttons" "button"
+    And I click on "HTML" "button"
+    When I click on "HTML" "button"
+    Then I should see "Words: 2"
+
+  @javascript
+  Scenario: Display wordcount in onlinesubmissions if wordlimit is set
+    Given the following "courses" exist:
+      | fullname | shortname | category | groupmode |
+      | Course 1 | C1 | 0 | 1 |
+    And the following "users" exist:
+      | username | firstname | lastname | email |
+      | teacher1 | Teacher | 1 | teacher1@example.com |
+      | student1 | Student | 1 | student1@example.com |
+    And the following "course enrolments" exist:
+      | user | course | role |
+      | teacher1 | C1 | editingteacher |
+      | student1 | C1 | student |
+    And the following "activity" exists:
+      | activity                                      | assign                  |
+      | course                                        | C1                      |
+      | name                                          | Test assignment name    |
+      | intro                                         | Submit your online text |
+      | submissiondrafts                              | 0                       |
+      | assignsubmission_onlinetext_enabled           | 1                       |
+      | assignsubmission_onlinetext_wordlimit_enabled | 1                       |
+      | assignsubmission_onlinetext_wordlimit         | 8010                    |
+      | assignsubmission_file_enabled                 | 0                       |
+    And I am on the "Test assignment name" Activity page logged in as student1
+    When I press "Add submission"
+    And I wait until the page is ready
+    And I set the following fields to these values:
+      | Online text | two words |
+    And I click on "Show more buttons" "button"
+    And I click on "HTML" "button"
+    When I click on "HTML" "button"
+    Then I should see "Words: 2/8010"
+
+
+@javascript
+  Scenario: Display wordcount in essay inside quiz if wordlimit is set
+    Given the following "users" exist:
+      | username | firstname | lastname | email               |
+      | student  | Student   | One      | student@example.com |
+    And the following "courses" exist:
+      | fullname | shortname | category |
+      | Course 1 | C1        | 0        |
+    And the following "course enrolments" exist:
+      | user     | course | role    |
+      | student  | C1     | student |
+    And the following "question categories" exist:
+      | contextlevel | reference | name           |
+      | Course       | C1        | Test questions |
+    And the following "activities" exist:
+      | activity   | name   | intro              | course | idnumber |
+      | quiz       | Quiz 1 | Quiz 1 description | C1     | quiz1    |
+    And the following "questions" exist:
+      | questioncategory | qtype | name   | template | maxwordenabled | maxwordlimit |
+      | Test questions   | essay | essay1 | editor   | 1              | 20           |
+    And quiz "Quiz 1" contains the following questions:
+      | question | page |
+      | essay1   | 1    |
+    And quiz "Quiz 1" contains the following sections:
+      | heading   | firstslot | shuffle |
+      | Section 1 | 1         | 0       |
+    When I am on the "Quiz 1" "mod_quiz > View" page logged in as "student"
+    And I press "Attempt quiz now"
+    Then I should see "Section 1" in the "Quiz navigation" "block"
+    And I wait until the page is ready
+    And I set the following fields to these values:
+      | Answer text | I have already written nine out of twenty words |
+    And I click on "Show more buttons" "button"
+    And I click on "HTML" "button"
+    When I click on "HTML" "button"
+    Then I should see "Words: 9/20"
+
