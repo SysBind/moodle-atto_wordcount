@@ -42,6 +42,12 @@ body.path-question-type {
                 padding: 0 4px;
                 border-radius: 4px;
             }
+            .warning-icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+            }
             > div {
                 padding: 2px 5px;
                 > * {

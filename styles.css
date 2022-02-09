@@ -26,6 +26,11 @@ body.path-question-type .form-group .sr-only:not(legend):not([for="id_category"]
     font-weight: normal !important;
     padding: 0 4px;
     border-radius: 4px; }
+  .editor_atto_wrap .editor_atto_toolbar.editor_atto_toolbar_bottom .warning-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; }
   .editor_atto_wrap .editor_atto_toolbar.editor_atto_toolbar_bottom > div {
     padding: 2px 5px; }
     .editor_atto_wrap .editor_atto_toolbar.editor_atto_toolbar_bottom > div > * {

@@ -63,10 +63,15 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
                 '</div></div>'));
         this.wordlimit = this.get('wordlimits')[editorInstance];
         if (this.wordlimit) {
-            var seperatorField = document.createElement("span");
+            window.console.log('here');
+            var warningIcon = document.createElement("i");
+            warningIcon.classList.add('icon', 'fa', 'fa-exclamation', 'fa-fw', 'warning-icon');
+            warningIcon.id = this.counterid + '-warning-icon';
+            document.getElementById(this.counterid).parentNode.insertBefore(warningIcon, document.getElementById(this.counterid));
+            var seperatorField = document.createElement('span');
             seperatorField.innerHTML = '/';
             document.getElementById(this.counterid).parentNode.appendChild(seperatorField);
-            var wordLimitField = document.createElement("span");
+            var wordLimitField = document.createElement('span');
             wordLimitField.innerHTML = this.wordlimit;
             document.getElementById(this.counterid).parentNode.appendChild(wordLimitField);
         }
@@ -89,14 +94,9 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
             Y.one('#' + wordcount.counterid).set('text', currentCount);
             if (wordcount.wordlimit) {
                 if (wordcount.wordlimit - currentCount < 0) {
-                    Y.one('#' + wordcount.counterid).addClass('danger');
-                    Y.one('#' + wordcount.counterid).removeClass('warning');
-                } else if (wordcount.wordlimit - currentCount < 10) {
-                    Y.one('#' + wordcount.counterid).addClass('warning');
-                    Y.one('#' + wordcount.counterid).removeClass('danger');
+                    Y.one('#' + wordcount.counterid + '-warning-icon').setStyle("display", "flex");
                 } else {
-                    Y.one('#' + wordcount.counterid).removeClass('warning');
-                    Y.one('#' + wordcount.counterid).removeClass('danger');
+                    Y.one('#' + wordcount.counterid + '-warning-icon').setStyle("display", "none");
                 }
             }
             setTimeout(function() {
