@@ -92,7 +92,7 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
             Y.one('#' + wordcount.counterid).set('text', currentCount);
             if (wordcount.wordlimit) {
                 if (wordcount.wordlimit - currentCount < 0) {
-                    Y.one('#' + wordcount.counterid + '-warning-icon').setStyle("display", "inline");
+                    Y.one('#' + wordcount.counterid + '-warning-icon').setStyle("display", "flex");
                 } else {
                     Y.one('#' + wordcount.counterid + '-warning-icon').setStyle("display", "none");
                 }
