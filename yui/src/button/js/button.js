@@ -97,18 +97,6 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
                     Y.one('#' + wordcount.counterid + '-warning-icon').setStyle("display", "none");
                 }
             }
-            // if (wordcount.wordlimit) {
-            //     if (wordcount.wordlimit - currentCount < 0) {
-            //         Y.one('#' + wordcount.counterid).addClass('danger');
-            //         Y.one('#' + wordcount.counterid).removeClass('warning');
-            //     } else if (wordcount.wordlimit - currentCount < 10) {
-            //         Y.one('#' + wordcount.counterid).addClass('warning');
-            //         Y.one('#' + wordcount.counterid).removeClass('danger');
-            //     } else {
-            //         Y.one('#' + wordcount.counterid).removeClass('warning');
-            //         Y.one('#' + wordcount.counterid).removeClass('danger');
-            //     }
-            // }
             setTimeout(function() {
                 wordcount.block = 0;
             }, wordcount.updateRate);
