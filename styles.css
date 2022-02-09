@@ -16,7 +16,8 @@ body.path-question-type .form-group .sr-only:not(legend):not([for="id_category"]
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%; }
+    height: 100%;
+    display: none; }
   .editor_atto_wrap .editor_atto_toolbar.editor_atto_toolbar_bottom > div {
     padding: 2px 5px; }
     .editor_atto_wrap .editor_atto_toolbar.editor_atto_toolbar_bottom > div > * {

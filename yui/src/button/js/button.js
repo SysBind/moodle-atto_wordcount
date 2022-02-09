@@ -63,7 +63,7 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
         if (this.wordlimit) {
             window.console.log('here');
             var warningIcon = document.createElement("i");
-            warningIcon.classList.add('icon', 'fa', 'fa-exclamation', 'fa-fw');
+            warningIcon.classList.add('icon', 'fa', 'fa-exclamation', 'fa-fw', 'warning-icon');
             warningIcon.id = this.counterid + '-warning-icon';
             document.getElementById(this.counterid).parentNode.insertBefore(warningIcon, document.getElementById(this.counterid));
             var seperatorField = document.createElement('span');
