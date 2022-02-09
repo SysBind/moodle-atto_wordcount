@@ -29,7 +29,8 @@ Feature: Atto wordcount button
     And I click on "HTML" "button"
     And I set the field "Description" to "<p></p>"
     When I click on "HTML" "button"
-    Then I should see "Words: 0"
+    Then I should see "Words:"
+    And I should see "0"
 
   @javascript
   Scenario: Count words on atto is Words only
@@ -48,7 +49,8 @@ Feature: Atto wordcount button
     <p></p>
     """
     When I click on "HTML" "button"
-    Then I should see "Words: 428"
+    Then I should see "Words:"
+    And I should see "428"
 
   @javascript
   Scenario: Count words on atto is Words With Multimedia
@@ -99,4 +101,5 @@ Feature: Atto wordcount button
     And I set the field "Muted" to "1"
     And I set the field "Loop" to "1"
     When I click on "Insert media" "button"
-    Then I should see "Words: 430"
+    Then I should see "Words:"
+    And I should see "430"
