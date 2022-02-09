@@ -25,23 +25,6 @@ body.path-question-type {
             justify-content: right;
             background: inherit;
             border: none;
-            .danger {
-                background-color: var(--danger);
-                font-weight: normal;
-                color: #fff;
-                font-weight: bolder;
-                padding: 0 4px;
-                border-radius: 4px;
-            }
-            .danger::before {
-                content: "\26A0";
-            }
-            .warning {
-                background-color: var(--warning);
-                font-weight: normal!important;
-                padding: 0 4px;
-                border-radius: 4px;
-            }
             .warning-icon {
                 display: flex;
                 align-items: center;
