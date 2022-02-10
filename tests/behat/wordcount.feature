@@ -257,5 +257,3 @@ Feature: Atto wordcount button
     And I click on "HTML" "button"
     When I click on "HTML" "button"
     Then I should see "Words: 14"
-
-
