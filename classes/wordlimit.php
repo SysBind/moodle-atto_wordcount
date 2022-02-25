@@ -37,7 +37,8 @@ class wordlimit {
     /**
      * Get the wordlimit for an onlinesubmission in an essay.
      *
-     * @return  array
+     * @param   string  $assignmentid the instance-id of the assignment
+     * @return  string  $wordlimit
      */
     protected static function get_wordlimit_for_onlinesubmission($assignmentid) {
         // Get settings from onlinepage submission plugin: Check if the wordlimit is enabled.
@@ -52,7 +53,7 @@ class wordlimit {
             MUST_EXIST,
         );
         // If the wordlimit is enabled get the word limit and pass it to the javascript module.
-        if ( array_key_exists( 'value', $wordlimitenabled ) && "1" === $wordlimitenabled->value ) {
+        if ( '1' === $wordlimitenabled->value ) {
             $wordlimit = $DB->get_record(
                 'assign_plugin_config',
                 array(
@@ -71,7 +72,9 @@ class wordlimit {
     /**
      * Get the wordlimits for an essay of a certain page inside a quiz.
      *
-     * @return  array
+     * @param int     $quizid the instance-id of the quiz
+     * @param string  $page the number of the page as in the database, offset +1 in the frontend.
+     * @return array  $wordlimits
      */
     protected static function get_wordlimits_for_essay_in_quiz($quizid, $page) {
         global $DB;

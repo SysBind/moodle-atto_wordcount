@@ -27,6 +27,10 @@ defined('MOODLE_INTERNAL') || die();
 
 /**
  * Pass the wordlimits to the js part of the plugin.
+ *
+ * @param string $elementid - unused.
+ * @param stdClass $options - the options for the editor, including the context - unused.
+ * @param stdClass $fpoptions - unused.
  */
 function atto_wordcount_params_for_js ($elementid, $options, $foptions) {
     $wordlimits = atto_wordcount\wordlimit::get_wordlimits();
