@@ -26,15 +26,6 @@
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Initialise the js strings required for this module.
- */
-function atto_wordcount_strings_for_js() {
-    global $PAGE;
-
-    $PAGE->requires->strings_for_js(['words', 'wordscount'], 'atto_wordcount');
-}
-
-/**
  * Pass the wordlimits to the js part of the plugin.
  */
 function atto_wordcount_params_for_js ($elementid, $options, $foptions) {
