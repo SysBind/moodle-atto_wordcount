@@ -41,6 +41,7 @@ function atto_wordcount_strings_for_js() {
  * @param string $elementid - unused.
  * @param stdClass $options - the options for the editor, including the context - unused.
  * @param stdClass $fpoptions - unused.
+ * @return array $params - array with key worlimits containing array with the wordlimits.
  */
 function atto_wordcount_params_for_js ($elementid, $options, $foptions) {
     $wordlimits = atto_wordcount\wordlimit::get_wordlimits();

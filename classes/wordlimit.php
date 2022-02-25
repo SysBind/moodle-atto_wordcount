@@ -96,7 +96,7 @@ class wordlimit {
     /**
      * Get the wordlimit depending on the type of page which is beein edited.
      *
-     * @return  array
+     * @return  array $wordlimits
      */
     public static function get_wordlimits() {
 
