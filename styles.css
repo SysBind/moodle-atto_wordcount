@@ -11,8 +11,6 @@ body.path-question-type .form-group .sr-only:not(legend):not([for="id_category"]
 .editor_atto_wrap .editor_atto_toolbar.editor_atto_toolbar_bottom {
     font-size: 0.8rem;
     min-height: unset;
-    -webkit-box-pack: right;
-    -ms-flex-pack: right;
     justify-content: right;
     background: inherit;
     border: none;
