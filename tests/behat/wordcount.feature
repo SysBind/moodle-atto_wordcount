@@ -155,7 +155,7 @@ Feature: Atto wordcount button
     When I click on "HTML" "button"
     Then I should see "Words: 2/8010"
 
-@javascript
+  @javascript
   Scenario: Display wordcount in essay inside quiz if wordlimit is not set
     Given the following "question categories" exist:
       | contextlevel | reference | name           |
@@ -183,7 +183,7 @@ Feature: Atto wordcount button
     When I click on "HTML" "button"
     Then I should see "Words: 6"
 
-@javascript
+  @javascript
   Scenario: Display wordcount in essay inside quiz if wordlimit is set
     Given the following "question categories" exist:
       | contextlevel | reference | name           |
@@ -211,7 +211,7 @@ Feature: Atto wordcount button
     When I click on "HTML" "button"
     Then I should see "Words: 9/20"
 
-@javascript
+  @javascript
   Scenario: Display wordcount in multiple essays inside quiz if wordlimit is sometimes set
     Given the following "question categories" exist:
       | contextlevel | reference | name           |
