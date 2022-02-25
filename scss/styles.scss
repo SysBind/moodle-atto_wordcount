@@ -27,7 +27,6 @@ body.path-question-type {
             border: none;
             .danger {
                 background-color: var(--danger);
-                font-weight: normal;
                 color: #fff;
                 font-weight: bolder;
                 padding: 0 4px;
@@ -40,7 +39,6 @@ body.path-question-type {
                 border-radius: 4px;
             }
             .warning-icon {
-                display: flex;
                 align-items: center;
                 justify-content: center;
                 height: 100%;
