@@ -6,7 +6,7 @@ services:
     alias: selenium-standalone-chrome
 
 variables:
-  DB: "postgres"
+  DB: "pgsql"
   TRAVIS_BUILD_DIR: "$CI_PROJECT_DIR"
   MOODLE_BRANCH: "MOODLE_311_STABLE"
   # Only needed, when your project is within a group/subgroup of "moodle".
