@@ -24,8 +24,6 @@
 
 namespace atto_wordcount;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Collection of functions thich get the wordlimit for the text written in atto if it is set.
  *
