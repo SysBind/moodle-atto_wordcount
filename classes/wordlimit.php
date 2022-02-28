@@ -114,7 +114,6 @@ class wordlimit {
         }
 
         if ( '/mod/quiz/attempt.php' === $PAGE->url->get_path() && "mod-quiz-attempt" === $PAGE->pagetype ) {
-            global $DB;
             // The quiz-id is the current course-module id.
             $quizid = intval( $PAGE->cm->instance );
             // See on which page of the quiz we are.
