@@ -1,12 +1,13 @@
 image: moodlehq/moodle-php-apache:7.4
 
 services:
-  - postgres:10.20
-  - name: selenium/standalone-chrome
+  - mysql:5.7
+  - name: selenium/standalone-chrome:3
     alias: selenium-standalone-chrome
 
 variables:
-  DB: "pgsql"
+  DB: "mysqli"
+  MYSQL_ALLOW_EMPTY_PASSWORD: "true"
   TRAVIS_BUILD_DIR: "$CI_PROJECT_DIR"
   MOODLE_BRANCH: "MOODLE_311_STABLE"
   # Only needed, when your project is within a group/subgroup of "moodle".
@@ -17,7 +18,7 @@ variables:
 test:
   before_script:
     # Update packages and install mysql-client.
-    - apt update && apt install -y postgresql postgresql-contrib
+    - apt update && apt install -y default-mysql-client
     # Install nvm and NodeJS.
     - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
     - . $HOME/.nvm/nvm.sh
@@ -36,7 +37,7 @@ test:
     - chmod u+x ci/bin/*
     - umask u+x
     # Install Moodle (ommit the --moodle argument if not needed)
-    - moodle-plugin-ci install --moodle=$MOODLE_DIR --db-host=postgres --no-init -vvv
+    - moodle-plugin-ci install --moodle=$MOODLE_DIR --db-host=mysql --no-init -vvv
     - cd $MOODLE_DIR
     - php -S $IPADDRESS:8000 -t $MOODLE_DIR > /dev/null 2>&1 &
     - php admin/tool/behat/cli/init.php --add-core-features-to-theme --parallel=1 --optimize-runs=@local_ffhs_exam_toolbox
