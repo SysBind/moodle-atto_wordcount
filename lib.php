@@ -38,12 +38,9 @@ function atto_wordcount_strings_for_js() {
 /**
  * Pass the wordlimits to the js part of the plugin.
  *
- * @param string $elementid - unused.
- * @param stdClass $options - the options for the editor, including the context - unused.
- * @param stdClass $fpoptions - unused.
- * @return array $params - array with key worlimits containing array with the wordlimits.
+ * @return array $params.
  */
-function atto_wordcount_params_for_js ($elementid, $options, $foptions) {
+function atto_wordcount_params_for_js() {
     $wordlimits = atto_wordcount\wordlimit::get_wordlimits();
     // Wrapp the wordlimits into an array whith wordlimits as the key.
     $params = array ( 'wordlimits' => $wordlimits );
