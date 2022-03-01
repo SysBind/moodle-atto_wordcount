@@ -1,13 +1,16 @@
 image: moodlehq/moodle-php-apache:7.4
 
 services:
-  - postgres:10
+  - postgres:10.20-alpine
   - name: selenium/standalone-chrome:3
     alias: selenium-standalone-chrome
 
 variables:
   DB: "pgsql"
-  MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+  POSTGRES_DB: $POSTGRES_DB
+  POSTGRES_USER: $POSTGRES_USER
+  POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+  POSTGRES_HOST_AUTH_METHOD: trust
   TRAVIS_BUILD_DIR: "$CI_PROJECT_DIR"
   MOODLE_BRANCH: "MOODLE_311_STABLE"
   # Only needed, when your project is within a group/subgroup of "moodle".
@@ -37,7 +40,7 @@ test:
     - chmod u+x ci/bin/*
     - umask u+x
     # Install Moodle (ommit the --moodle argument if not needed)
-    - moodle-plugin-ci install --moodle=$MOODLE_DIR --db-host=postgres --no-init -vvv
+    - moodle-plugin-ci install --moodle=$MOODLE_DIR --db-type=pgsql --db-user=$POSTGRES_USER --db-pass=$POSTGRES_PASSWORD --db-name=$POSTGRES_DB --db-host=postgres --no-init -vvv
     - cd $MOODLE_DIR
     - php -S $IPADDRESS:8000 -t $MOODLE_DIR > /dev/null 2>&1 &
     - php admin/tool/behat/cli/init.php --add-core-features-to-theme --parallel=1 --optimize-runs=@local_ffhs_exam_toolbox
