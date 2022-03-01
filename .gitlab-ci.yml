@@ -7,8 +7,9 @@ services:
 
 variables:
   DB: "pgsql"
-  POSTGRES_USER: moodle
-  POSTGRES_PASSWORD: moodle
+  POSTGRES_DB: $POSTGRES_DB
+  POSTGRES_USER: $POSTGRES_USER
+  POSTGRES_PASSWORD: $POSTGRES_PASSWORD
   POSTGRES_HOST_AUTH_METHOD: trust
   MOODLE_BRANCH: "MOODLE_311_STABLE"
   # Only needed, when your project is within a group/subgroup of "moodle".
@@ -38,7 +39,7 @@ test:
     - chmod u+x ci/bin/*
     - umask u+x
     # Install Moodle (ommit the --moodle argument if not needed)
-    - moodle-plugin-ci install --moodle=$MOODLE_DIR --db-type=pgsql --db-host=postgres --db-user=moodle --db-name=moodle --db-pass=moodle --no-init -vvv
+    - moodle-plugin-ci install --moodle=$MOODLE_DIR --db-user=$POSTGRES_USER --db-pass=$POSTGRES_PASSWORD --db-host=postgres --no-init -vvv
     - cd $MOODLE_DIR
     - php -S $IPADDRESS:8000 -t $MOODLE_DIR > /dev/null 2>&1 &
     - php admin/tool/behat/cli/init.php --add-core-features-to-theme --parallel=1 --optimize-runs=@local_ffhs_exam_toolbox
