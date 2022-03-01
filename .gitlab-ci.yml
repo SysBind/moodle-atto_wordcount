@@ -39,7 +39,7 @@ test:
     - chmod u+x ci/bin/*
     - umask u+x
     # Install Moodle (ommit the --moodle argument if not needed)
-    - moodle-plugin-ci install --moodle=$MOODLE_DIR --db-type=pgsql --db-name="moodle" --db-user="moodle_user" --db-pass="moodle_password" --db-host=postgres --no-init -vvv
+    - moodle-plugin-ci install --moodle=$MOODLE_DIR --db-type=pgsql --db-name=moodle --db-user=moodle_user --db-pass=moodle_password --db-host=postgres --no-init -vvv
     - cd $MOODLE_DIR
     - php -S $IPADDRESS:8000 -t $MOODLE_DIR > /dev/null 2>&1 &
     - php admin/tool/behat/cli/init.php --add-core-features-to-theme --parallel=1 --optimize-runs=@local_ffhs_exam_toolbox
