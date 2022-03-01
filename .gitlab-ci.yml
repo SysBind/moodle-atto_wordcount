@@ -7,7 +7,6 @@ services:
 
 variables:
   DB: "pgsql"
-  POSTGRES_DB: moodle
   POSTGRES_USER: moodle
   POSTGRES_PASSWORD: moodle
   POSTGRES_HOST_AUTH_METHOD: trust
