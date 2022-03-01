@@ -1,12 +1,12 @@
 image: moodlehq/moodle-php-apache:7.4
 
 services:
-  - mysql:5.7
+  - postgres:10.20
   - name: selenium/standalone-chrome:3
     alias: selenium-standalone-chrome
 
 variables:
-  DB: "mysqli"
+  DB: "pgsql"
   MYSQL_ALLOW_EMPTY_PASSWORD: "true"
   TRAVIS_BUILD_DIR: "$CI_PROJECT_DIR"
   MOODLE_BRANCH: "MOODLE_311_STABLE"
