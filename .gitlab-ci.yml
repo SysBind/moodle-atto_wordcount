@@ -36,6 +36,8 @@ test:
     - chmod u+x ci/bin/*
     - umask u+x
     # Install Moodle (ommit the --moodle argument if not needed)
+    - pwd
+    - ls -l
     - moodle-plugin-ci install --moodle=$MOODLE_DIR --db-type=pgsql --db-name=moodle --db-host=postgres --no-init -vvv
     - cd $MOODLE_DIR
     - php -S $IPADDRESS:8000 -t $MOODLE_DIR > /dev/null 2>&1 &
