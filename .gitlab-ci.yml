@@ -19,9 +19,9 @@ test:
     # Update packages and install mysql-client.
     - apt update && apt install -y postgresql-client postgresql-client-common
     # Install nvm and NodeJS.
-    - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-    - . $HOME/.nvm/nvm.sh
-    - nvm install 16.14.0
+    # - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+    # - . $HOME/.nvm/nvm.sh
+    # - nvm install 16.14.0
     # Install composer.
     - curl -sS https://getcomposer.org/installer | php
     - mv composer.phar /usr/local/bin/composer
