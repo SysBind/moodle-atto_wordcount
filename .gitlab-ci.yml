@@ -42,7 +42,7 @@ test:
     - php -S $IPADDRESS:8000 -t $MOODLE_DIR > /dev/null 2>&1 &
     - php admin/tool/behat/cli/init.php --add-core-features-to-theme --parallel=1 --optimize-runs=@local_ffhs_exam_toolbox
     - node --version
-    - grunt --version
+    - npx grunt --version
     - npm --version
 
   script:
