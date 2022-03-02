@@ -21,7 +21,7 @@ test:
     # Install nvm and NodeJS.
     - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
     - . $HOME/.nvm/nvm.sh
-    - nvm install 14.15.0
+    - nvm install 14.19.0
     # Install composer.
     - curl -sS https://getcomposer.org/installer | php
     - mv composer.phar /usr/local/bin/composer
@@ -41,6 +41,7 @@ test:
     - cd $MOODLE_DIR
     - php -S $IPADDRESS:8000 -t $MOODLE_DIR > /dev/null 2>&1 &
     - php admin/tool/behat/cli/init.php --add-core-features-to-theme --parallel=1 --optimize-runs=@local_ffhs_exam_toolbox
+    - node --version
 
   script:
     - moodle-plugin-ci phplint
