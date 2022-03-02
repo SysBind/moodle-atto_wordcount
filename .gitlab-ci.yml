@@ -21,7 +21,7 @@ test:
     # Install nvm and NodeJS.
     - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
     - . $HOME/.nvm/nvm.sh
-    - nvm install 14.19.0
+    - nvm install 16.14.0
     # Install composer.
     - curl -sS https://getcomposer.org/installer | php
     - mv composer.phar /usr/local/bin/composer
