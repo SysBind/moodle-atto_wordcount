@@ -7,7 +7,6 @@ services:
 
 variables:
   DB: "pgsql"
-  POSTGRES_DB: moodle
   POSTGRES_HOST_AUTH_METHOD: trust
   MOODLE_BRANCH: "MOODLE_311_STABLE"
   # Only needed, when your project is within a group/subgroup of "moodle".
