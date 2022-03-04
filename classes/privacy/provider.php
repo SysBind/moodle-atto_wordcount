@@ -24,8 +24,6 @@
 
 namespace atto_wordcount\privacy;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Privacy Subsystem for atto_wordcount implementing null_provider.
  *
