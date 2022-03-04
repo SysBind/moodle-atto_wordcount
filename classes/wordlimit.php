@@ -76,17 +76,24 @@ class wordlimit {
      */
     protected static function get_wordlimits_for_essay_in_quiz($quizid, $page) {
         global $DB;
-        // Make a database query to see if a maxwordlimit is set on this question. TODO: is this elegant enough?
+
+        // Make a database query to see if a maxwordlimit is set on the current quiz page.
         // We need to also select slot, because the slot is unique here: there might be multiple
         // editors with the same wordlimit on the same page, and then only the first would be returned.
-        $sql = "SELECT slot, maxwordlimit
+        $sql = "SELECT slot, *
                 FROM {qtype_essay_options}
                 INNER JOIN {quiz_slots}
                 ON {qtype_essay_options}.questionid = {quiz_slots}.questionid
                 WHERE quizid = ? AND page = ?
                 ORDER BY slot";
-        $wordlimits = $DB->get_records_sql( $sql, [$quizid, $page] );
-        $wordlimits = array_column( $wordlimits, 'maxwordlimit' );
+
+        $quizoptions = $DB->get_records_sql( $sql, [$quizid, $page] );
+
+        if ( array_key_exists( 'maxwordlimit', $quizoptions ) ) {
+            $wordlimits = array_column( $quizoptions, 'maxwordlimit' );
+        } else {
+            $wordlimits = array();
+        }
         return $wordlimits;
     }
 
@@ -97,7 +104,6 @@ class wordlimit {
      * @return  array $wordlimits
      */
     public static function get_wordlimits() {
-
         global $PAGE;
 
         // Define the parameter array which is served to the javascript of the plugin.
