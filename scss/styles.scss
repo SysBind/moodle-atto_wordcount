@@ -20,8 +20,39 @@ body.path-question-type {
 .editor_atto_wrap {
     .editor_atto_toolbar {
         &.editor_atto_toolbar_bottom {
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             min-height: unset;
+            justify-content: right;
+            background: inherit;
+            border: none;
+            .danger {
+                background-color: var(--danger);
+                color: #fff;
+                font-weight: bolder;
+                padding: 0 4px;
+                border-radius: 4px;
+            }
+            .warning {
+                background-color: var(--warning);
+                font-weight: normal;
+                padding: 0 4px;
+                border-radius: 4px;
+            }
+            .warning-icon {
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                display: none;
+            }
+            > div {
+                padding: 2px 5px;
+                > *:first-child {
+                    margin: 0 0.2rem;
+                }
+                > * {
+                    margin: 0 0.05rem;
+                }
+            }
         }
     }
 }

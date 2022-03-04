@@ -1,8 +1,18 @@
+## [1.2.0]
+### Added
+- Show max wordlimit indicator next to the wordcounter on essays and quiz sites.
+### Changed
+- Removed compatiblity with Moodle version prior to 3.11
+
+## [1.1.0]
+### Fixed
+- Fixed counter value when bold
+
 ## [1.0.20] - 2021-07-05
 ### Added
 - Add stylesheets for bottom toolbar
 
-### Changed 
+### Changed
 - Update the release workflow to new one with token
 - Fix screen reader only view on question editor
 

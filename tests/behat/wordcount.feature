@@ -20,6 +20,17 @@ Feature: Atto wordcount button
     other = html,wordcount
     """
     And I press "Save changes"
+    And the following "courses" exist:
+      | fullname | shortname | category | groupmode |
+      | Course 1 | C1        | 0        | 1         |
+    And the following "users" exist:
+      | username | firstname | lastname | email                |
+      | teacher1 | Teacher   | 1        | teacher1@example.com |
+      | student1 | Student   | 1        | student1@example.com |
+    And the following "course enrolments" exist:
+      | user     | course | role           |
+      | teacher1 | C1     | editingteacher |
+      | student1 | C1     | student        |
 
   @javascript
   Scenario: Count words on atto is Zero
@@ -99,4 +110,150 @@ Feature: Atto wordcount button
     And I set the field "Muted" to "1"
     And I set the field "Loop" to "1"
     When I click on "Insert media" "button"
-    Then I should see "Words: 430"
+    Then I should see "Words: 4"
+
+  @javascript
+  Scenario: Display wordcount in onlinesubmissions if wordlimit is not set
+    Given the following "activity" exists:
+      | activity                                      | assign                  |
+      | course                                        | C1                      |
+      | name                                          | Test assignment name    |
+      | intro                                         | Submit your online text |
+      | submissiondrafts                              | 0                       |
+      | assignsubmission_onlinetext_enabled           | 1                       |
+      | assignsubmission_onlinetext_wordlimit_enabled | 0                       |
+      | assignsubmission_file_enabled                 | 0                       |
+    And I am on the "Test assignment name" Activity page logged in as student1
+    When I press "Add submission"
+    And I wait until the page is ready
+    And I set the following fields to these values:
+      | Online text | two words |
+    And I click on "Show more buttons" "button"
+    And I click on "HTML" "button"
+    When I click on "HTML" "button"
+    Then I should see "Words: 2"
+
+  @javascript
+  Scenario: Display wordcount in onlinesubmissions if wordlimit is set
+    Given the following "activity" exists:
+      | activity                                      | assign                  |
+      | course                                        | C1                      |
+      | name                                          | Test assignment name    |
+      | intro                                         | Submit your online text |
+      | submissiondrafts                              | 0                       |
+      | assignsubmission_onlinetext_enabled           | 1                       |
+      | assignsubmission_onlinetext_wordlimit_enabled | 1                       |
+      | assignsubmission_onlinetext_wordlimit         | 8010                    |
+      | assignsubmission_file_enabled                 | 0                       |
+    And I am on the "Test assignment name" Activity page logged in as student1
+    When I press "Add submission"
+    And I wait until the page is ready
+    And I set the following fields to these values:
+      | Online text | two words |
+    And I click on "Show more buttons" "button"
+    And I click on "HTML" "button"
+    When I click on "HTML" "button"
+    Then I should see "Words: 2/8010"
+
+  @javascript
+  Scenario: Display wordcount in essay inside quiz if wordlimit is not set
+    Given the following "question categories" exist:
+      | contextlevel | reference | name           |
+      | Course       | C1        | Test questions |
+    And the following "activities" exist:
+      | activity   | name   | intro              | course | idnumber |
+      | quiz       | Quiz 1 | Quiz 1 description | C1     | quiz1    |
+    And the following "questions" exist:
+      | questioncategory | qtype | name   | template | maxwordenabled | maxwordlimit |
+      | Test questions   | essay | essay1 | editor   | 0              | 0            |
+    And quiz "Quiz 1" contains the following questions:
+      | question | page |
+      | essay1   | 1    |
+    And quiz "Quiz 1" contains the following sections:
+      | heading   | firstslot | shuffle |
+      | Section 1 | 1         | 0       |
+    When I am on the "Quiz 1" "mod_quiz > View" page logged in as "student1"
+    And I press "Attempt quiz now"
+    Then I should see "Section 1" in the "Quiz navigation" "block"
+    And I wait until the page is ready
+    And I set the following fields to these values:
+      | Answer text | I have already written six words! |
+    And I click on "Show more buttons" "button"
+    And I click on "HTML" "button"
+    When I click on "HTML" "button"
+    Then I should see "Words: 6"
+
+  @javascript
+  Scenario: Display wordcount in essay inside quiz if wordlimit is set
+    Given the following "question categories" exist:
+      | contextlevel | reference | name           |
+      | Course       | C1        | Test questions |
+    And the following "activities" exist:
+      | activity   | name   | intro              | course | idnumber |
+      | quiz       | Quiz 1 | Quiz 1 description | C1     | quiz1    |
+    And the following "questions" exist:
+      | questioncategory | qtype | name   | template | maxwordenabled | maxwordlimit |
+      | Test questions   | essay | essay1 | editor   | 1              | 20           |
+    And quiz "Quiz 1" contains the following questions:
+      | question | page |
+      | essay1   | 1    |
+    And quiz "Quiz 1" contains the following sections:
+      | heading   | firstslot | shuffle |
+      | Section 1 | 1         | 0       |
+    When I am on the "Quiz 1" "mod_quiz > View" page logged in as "student1"
+    And I press "Attempt quiz now"
+    Then I should see "Section 1" in the "Quiz navigation" "block"
+    And I wait until the page is ready
+    And I set the following fields to these values:
+      | Answer text | I have already written nine out of twenty words |
+    And I click on "Show more buttons" "button"
+    And I click on "HTML" "button"
+    When I click on "HTML" "button"
+    Then I should see "Words: 9/20"
+
+  @javascript
+  Scenario: Display wordcount in multiple essays inside quiz if wordlimit is sometimes set
+    Given the following "question categories" exist:
+      | contextlevel | reference | name           |
+      | Course       | C1        | Test questions |
+    And the following "activities" exist:
+      | activity   | name   | intro              | course | idnumber |
+      | quiz       | Quiz 1 | Quiz 1 description | C1     | quiz1    |
+    And the following "questions" exist:
+      | questioncategory | qtype | name   | questiontext                  | template | maxwordenabled | maxwordlimit |
+      | Test questions   | essay | essay1 | Write not more than 111 words | editor   | 1              | 111          |
+      | Test questions   | essay | essay2 | Write as much as you want Nr1 | editor   | 0              | 0            |
+      | Test questions   | essay | essay3 | Write not more than 222 words | editor   | 1              | 222          |
+      | Test questions   | essay | essay4 | Write as much as you want Nr2 | editor   | 0              | 0            |
+      | Test questions   | essay | essay5 | Write not more than 333 words | editor   | 0              | 0            |
+      | Test questions   | essay | essay6 | Write as much as you want Nr2 | editor   | 1              | 333          |
+    And quiz "Quiz 1" contains the following questions:
+      | question | page |
+      | essay1   | 1    |
+      | essay2   | 1    |
+      | essay3   | 1    |
+      | essay4   | 1    |
+      | essay5   | 2    |
+      | essay6   | 2    |
+    And quiz "Quiz 1" contains the following sections:
+      | heading   | firstslot | shuffle |
+      | Section 1 | 1         | 0       |
+      | Section 2 | 5         | 0       |
+    When I am on the "Quiz 1" "mod_quiz > View" page logged in as "student1"
+    And I press "Attempt quiz now"
+    Then I should see "Section 1" in the "Quiz navigation" "block"
+    And I wait until the page is ready
+    And I set the following fields to these values:
+      | Answer text | I have already written ten words out of 111 words! |
+    And I click on "Show more buttons" "button"
+    And I click on "HTML" "button"
+    When I click on "HTML" "button"
+    Then I should see "Words: 10/111"
+    When I click on "#quiznavbutton5" "css_element"
+    And I wait until the page is ready
+    And I set the following fields to these values:
+      | Answer text | I have written exaclty fourteen words so far out of as many i want |
+    And I click on "Show more buttons" "button"
+    And I click on "HTML" "button"
+    When I click on "HTML" "button"
+    Then I should see "Words: 14"

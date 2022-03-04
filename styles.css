@@ -9,6 +9,47 @@ body.path-question-type .form-group .sr-only:not(legend):not([for="id_category"]
 }
 
 .editor_atto_wrap .editor_atto_toolbar.editor_atto_toolbar_bottom {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     min-height: unset;
+    justify-content: right;
+    background: inherit;
+    border: none;
+}
+
+.editor_atto_wrap .editor_atto_toolbar.editor_atto_toolbar_bottom .danger {
+    background-color: var(--danger);
+    color: #fff;
+    font-weight: bolder;
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
+.editor_atto_wrap .editor_atto_toolbar.editor_atto_toolbar_bottom .warning {
+    background-color: var(--warning);
+    font-weight: normal;
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
+.editor_atto_wrap .editor_atto_toolbar.editor_atto_toolbar_bottom .warning-icon {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    height: 100%;
+    display: none;
+}
+
+.editor_atto_wrap .editor_atto_toolbar.editor_atto_toolbar_bottom > div {
+    padding: 2px 5px;
+}
+
+.editor_atto_wrap .editor_atto_toolbar.editor_atto_toolbar_bottom > div > *:first-child {
+    margin: 0 0.2rem;
+}
+
+.editor_atto_wrap .editor_atto_toolbar.editor_atto_toolbar_bottom > div > * {
+    margin: 0 0.05rem;
 }

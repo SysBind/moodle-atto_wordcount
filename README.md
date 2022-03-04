@@ -1,10 +1,12 @@
 # ATTO Word Count [![Build Status](https://github.com/SysBind/moodle-atto_wordcount/actions/workflows/ci.yml/badge.svg?branch=main)]((https://github.com/SysBind/moodle-atto_wordcount/actions))
 Add "real time" words count to Moodle Atto editor, By enable this Atto plugin the user will see a new bottom atto toolbar with the count of the words in the current Atto editor.
 The count is change will the user type or change the Atto editor content.
+Additionally next to the word counter the wordlimit will be displayed if one is set.
 
 You can see examples in the screenshots bellow.
+
 ## Requirements
-- Moodle 2.7 or later.
+- Moodle 3.11 or later.
 
 ## Installation
 1. Add the plugin to /lib/editor/atto/plugins
@@ -16,12 +18,15 @@ You can see examples in the screenshots bellow.
 ## Records
 Thanks to the Hebrew University Of Jerusalem that sponsor this plugin development.
 ![Hebrew University Of Jerusalem](https://moodle.org/pluginfile.php/50/local_plugins/plugin_description/2743/logo-ltr.png)
+
 ## Author
 Avi Levy (avi@sysbind.co.il)
 ![SysBind](https://moodle.org/pluginfile.php/50/local_plugins/plugin_description/2743/Sysbind-Moodle-Partner-Landscape.png)
-## License ##
+André Menrath (andre.menrath@uni-graz.at)
 
+## License ##
 2021 SysBind
+2022 University of Graz
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software

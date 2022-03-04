@@ -18,14 +18,15 @@
  * atto_wordcount version file.
  *
  * @package    atto_wordcount
- * @copyright  2021 Avi Levy <avi@sysbind.co.il>
+ * @copyright  2011 Avi Levy <avi@sysbind.co.il>
+ *             2022 André Menrath <andre.menrath@uni-graz.at>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2022020100;
-$plugin->requires = 2014051200;
+$plugin->version = 2022021000;
+$plugin->requires = 2021051700; // Moodle 3.11 release and upwards.
 $plugin->component = 'atto_wordcount';
-$plugin->release = '1.1.0';
+$plugin->release = '1.2.0';
 $plugin->maturity = MATURITY_STABLE;

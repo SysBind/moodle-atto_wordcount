@@ -25,12 +25,18 @@
 
 /**
  * Atto text editor wordcount plugin.
- *
- * @namespace M.atto_wordcount
- * @class button
- * @extends M.editor_atto.EditorPlugin
+ * @package    atto_wordcount
+ * @copyright  2021 Avi Levy <avi@sysbind.co.il>
+ *             2022 André Menrath <andre.menrath@uni-graz.at>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @namespace  M.atto_wordcount
+ * @class      button
+ * @extends    M.editor_atto.EditorPlugin
  */
 
+
+// Global Variable which keeps track if more than one editor is on page, as possible inside a quiz.
+var editorInstance = 0;
 
 Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto.EditorPlugin, [], {
 
@@ -49,10 +55,20 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
         this.counterElement = Y.Node.create('<span class="badge badge-light" id="' + this.counterid + '">0</span>');
         wrapper.appendChild(
             Y.Node.create('<div class="' + this.toolbar.getAttribute('class') + ' editor_atto_toolbar_bottom p-0 d-flex">' +
-                '<div class="d-inline-flex p-0"><strong>'
+                '<div class="d-inline-flex p-1"><strong>'
                 + M.util.get_string('words', 'atto_wordcount') + ': ' +
                 '</strong><span id="' + this.counterid + '">0</span>' +
                 '</div></div>'));
+        this.wordlimit = this.get('wordlimits')[editorInstance];
+        if (this.wordlimit) {
+            var seperatorField = document.createElement('span');
+            seperatorField.innerHTML = '/';
+            document.getElementById(this.counterid).parentNode.appendChild(seperatorField);
+            var wordLimitField = document.createElement('span');
+            wordLimitField.innerHTML = this.wordlimit;
+            document.getElementById(this.counterid).parentNode.appendChild(wordLimitField);
+        }
+        editorInstance += 1;
         this._count(host.get('editor'));
         this.get('host').on('pluginsloaded', function() {
             // Adds the current value to the stack.
@@ -67,7 +83,20 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
 
         wordcount.block = 1;
         setTimeout(function() {
-            Y.one('#' + wordcount.counterid).set('text', wordcount._getCount(editor));
+            var currentCount = wordcount._getCount(editor);
+            Y.one('#' + wordcount.counterid).set('text', currentCount);
+            if (wordcount.wordlimit) {
+                if (wordcount.wordlimit - currentCount < 0) {
+                    Y.one('#' + wordcount.counterid).addClass('danger');
+                    Y.one('#' + wordcount.counterid).removeClass('warning');
+                } else if (wordcount.wordlimit - currentCount < 10) {
+                    Y.one('#' + wordcount.counterid).addClass('warning');
+                    Y.one('#' + wordcount.counterid).removeClass('danger');
+                } else {
+                    Y.one('#' + wordcount.counterid).removeClass('warning');
+                    Y.one('#' + wordcount.counterid).removeClass('danger');
+                }
+            }
             setTimeout(function() {
                 wordcount.block = 0;
             }, wordcount.updateRate);
@@ -91,4 +120,17 @@ Y.namespace('M.atto_wordcount').Button = Y.Base.create('button', Y.M.editor_atto
         return wordCounts;
     }
 
-});
+}, {
+    ATTRS: {
+        /**
+         * Whether or not to allow borders
+         *
+         * @attribute wordlimits
+         * @type Array
+         */
+        wordlimits: {
+            value: [0]
+        },
+    }
+}
+);
