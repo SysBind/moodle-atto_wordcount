@@ -1,3 +1,12 @@
+## [1.1.1] - 2022-03-19
+### Changed
+- Stylesheet for fix ui for atto in Moodle 4.0
+- Fix behat test to support Moodle 4.0
+
+## [1.1.0] - 2022-02-01
+### Changed
+- Use same regexp as Moodle count_word function use
+
 ## [1.0.20] - 2021-07-05
 ### Added
 - Add stylesheets for bottom toolbar
