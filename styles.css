@@ -3,7 +3,7 @@ body.path-question-type .form-group .editor_atto_toolbar .sr-only:not(legend) {
     overflow: hidden;
 }
 
-body.path-question-type .form-group .sr-only:not(legend):not([for=id_category]) {
+body.path-question-type .form-group .sr-only:not(legend):not([for="id_category"]) {
     height: 1px;
     overflow: hidden;
 }
