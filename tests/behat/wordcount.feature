@@ -52,7 +52,11 @@ Feature: Atto wordcount button
 
   @javascript
   Scenario: Count words on atto is Words With Multimedia
-    Given I am on homepage
+    Given the following "blocks" exist:
+      | blockname     | contextlevel | reference | pagetypepattern | defaultregion |
+      | private_files | System       | 1         | my-index        | side-post     |
+    And I log in as "admin"
+    And I change window size to "large"
     And I follow "Manage private files..."
     And I upload "lib/editor/atto/tests/fixtures/moodle-logo.webm" file to "Files" filemanager
     And I upload "lib/editor/atto/tests/fixtures/moodle-logo.mp4" file to "Files" filemanager

@@ -18,7 +18,7 @@
  * atto_wordcount version file.
  *
  * @package    atto_wordcount
- * @copyright  2021 Avi Levy <avi@sysbind.co.il>
+ * @copyright  2022 Avi Levy <avi@sysbind.co.il>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -27,5 +27,5 @@ defined('MOODLE_INTERNAL') || die();
 $plugin->version = 2022020100;
 $plugin->requires = 2014051200;
 $plugin->component = 'atto_wordcount';
-$plugin->release = '1.1.0';
+$plugin->release = '1.1.1';
 $plugin->maturity = MATURITY_STABLE;
