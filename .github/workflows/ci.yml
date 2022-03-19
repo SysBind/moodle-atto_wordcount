@@ -50,6 +50,10 @@ jobs:
           - {moodle-branch: 'MOODLE_311_STABLE', php: '7.4', node: '16.14.2', database: 'pgsql'}
           - {moodle-branch: 'MOODLE_311_STABLE', php: '8.0', node: '16.14.2', database: 'mariadb'}
           - {moodle-branch: 'MOODLE_311_STABLE', php: '8.0', node: '16.14.2', database: 'pgsql'}
+          - {moodle-branch: 'master', php: '7.4', node: '16.14.2', database: 'mariadb'}
+          - {moodle-branch: 'master', php: '7.4', node: '16.14.2', database: 'pgsql'}
+          - {moodle-branch: 'master', php: '8.0', node: '16.14.2', database: 'mariadb'}
+          - {moodle-branch: 'master', php: '8.0', node: '16.14.2', database: 'pgsql'}
 
     steps:
       - name: Check out repository code
