@@ -1,4 +1,4 @@
-## [1.1.1] - 2022-03-19
+## [1.1.2] - 2022-03-19
 ### Changed
 - Stylesheet for fix ui for atto in Moodle 4.0
 - Fix behat test to support Moodle 4.0
