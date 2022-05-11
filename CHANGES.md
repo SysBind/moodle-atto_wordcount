@@ -1,7 +1,7 @@
-## [1.1.2] - 2022-03-19
+## [1.1.2] - 2022-05-11
 ### Changed
-- Stylesheet for fix ui for atto in Moodle 4.0
-- Fix behat test to support Moodle 4.0
+- Moodle 3.11+ required
+- Added wordlimit indicator for assignments and quizs
 
 ## [1.1.0] - 2022-02-01
 ### Changed
@@ -11,7 +11,7 @@
 ### Added
 - Add stylesheets for bottom toolbar
 
-### Changed 
+### Changed
 - Update the release workflow to new one with token
 - Fix screen reader only view on question editor
 
