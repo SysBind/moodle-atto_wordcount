@@ -27,3 +27,4 @@ defined('MOODLE_INTERNAL') || die();
 $string['pluginname'] = 'Atto Word Count';
 $string['words'] = 'Words';
 $string['wordscount'] = 'Words count';
+$string['privacy:metadata'] = 'The Atto Word Count plugin does not store any personal data.';
